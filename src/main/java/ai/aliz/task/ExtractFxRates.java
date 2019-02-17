@@ -24,12 +24,12 @@ public class ExtractFxRates extends DoFn<String, KV<String, FxRateInfo>> {
      * @param c
      */
     @ProcessElement
-    public void extractRatesRecord(final ProcessContext c) {
-        final String[] items = c.element().split(COMMA);
+    public void extractRatesRecord(final ProcessContext processContext) {
+        final String[] items = processContext.element().split(COMMA);
         final String venue = parseVenue(items);
         final String currency = parseCurrency(items);
         if (currency.equalsIgnoreCase(REQUIRED_CURRENCY)) {
-            c.output(KV.of(
+            processContext.output(KV.of(
                     String.format("%s-%s", venue, currency),
                     new FxRateInfo(venue, currency,
                             parseBidPrice(items),
