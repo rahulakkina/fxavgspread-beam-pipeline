@@ -16,7 +16,7 @@
 
     <groupId>ai.aliz</groupId>
     <artifactId>fxavgspread-beam-pipeline</artifactId>
-    <version>0.1.0</version>
+    <version>0.1</version>
 
     <packaging>jar</packaging>
 
@@ -124,7 +124,7 @@
                                     <mainClass>ai.aliz.driver.FxRateAverageSpreadDriver</mainClass>
                                 </manifest>
                             </archive>
-                            <finalName>${project.artifactId}-bundled-${project.version}</finalName>
+                            <finalName>${project.artifactId}-job-${project.version}</finalName>
                             <filters>
                                 <filter>
                                     <artifact>*:*</artifact>
