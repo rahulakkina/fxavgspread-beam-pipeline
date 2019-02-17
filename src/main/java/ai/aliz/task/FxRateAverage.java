@@ -45,13 +45,13 @@ public class FxRateAverage extends PTransform<PCollection<KV<String, FxRateInfo>
 
                             /**
                              *
-                             * @param c
+                             * @param processContext
                              * @throws IOException
                              */
                             @ProcessElement
-                            public void computeAverage(final ProcessContext c) throws IOException {
+                            public void computeAverage(final ProcessContext processContext) throws IOException {
 
-                                final String key[] = c.element().getKey().split(HYPEN);
+                                final String key[] = processContext.element().getKey().split(HYPEN);
                                 final String venue = key[0];
                                 final String currency = key[1];
 
@@ -69,7 +69,7 @@ public class FxRateAverage extends PTransform<PCollection<KV<String, FxRateInfo>
                                                  .mapToDouble(item -> (double) item.getAskValue())
                                                  .average().getAsDouble();
 
-                                c.output(KV.of(venue,
+                                processContext.output(KV.of(venue,
                                         new FxRateInfo(venue, currency, bidAvgVal, askAvgVal)
                                 ));
                             }
@@ -81,21 +81,21 @@ public class FxRateAverage extends PTransform<PCollection<KV<String, FxRateInfo>
         final PCollection<TableRow> results = groupingStats.apply(
                 ParDo.of(
                         new DoFn<KV<String, FxRateInfo>, TableRow>() {
-                            private static final long serialVersionUID = 1L;
+                            private static final long serialVersionUID = -1L;
 
                             /**
                              *
-                             * @param c
+                             * @param processContext
                              */
                             @ProcessElement
-                            public void buildTableRow(ProcessContext c) {
-                                final FxRateInfo fxRateInfo = c.element().getValue();
-                                c.output(new TableRow()
+                            public void buildTableRow(final ProcessContext processContext) {
+                                final FxRateInfo fxRateInfo = processContext.element().getValue();
+                                processContext.output(new TableRow()
                                         .set(OUTPUT_FIELD[0], fxRateInfo.getVenue())
                                         .set(OUTPUT_FIELD[1], fxRateInfo.getCurrency())
                                         .set(OUTPUT_FIELD[2], fxRateInfo.getBidValue())
                                         .set(OUTPUT_FIELD[3], fxRateInfo.getAskValue())
-                                        .set(OUTPUT_FIELD[4], c.timestamp().toString()));
+                                        .set(OUTPUT_FIELD[4], processContext.timestamp().toString()));
                             }
                         }
                 )
