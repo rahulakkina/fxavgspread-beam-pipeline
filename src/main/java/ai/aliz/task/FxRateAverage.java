@@ -55,16 +55,16 @@ public class FxRateAverage extends PTransform<PCollection<KV<String, FxRateInfo>
                                 final String venue = key[0];
                                 final String currency = key[1];
 
-                                final List<FxRateInfo> fxRateList = Lists.newArrayList(c.element().getValue());
+                                final List<FxRateInfo> fxRateList = Lists.newArrayList(processContext.element().getValue());
 
                                 final Float bidAvgVal =
-                                        (float) fxRateList.parallelStream()
+                                        (float) fxRateList.stream()
                                                 .filter(item -> (item.getBidValue() != null))
                                                 .mapToDouble(item -> (double) item.getBidValue())
                                                 .average().getAsDouble();
 
                                 final Float askAvgVal = 
-                                         (float) fxRateList.parallelStream()
+                                         (float) fxRateList.stream()
                                                  .filter(item -> (item.getAskValue() != null))
                                                  .mapToDouble(item -> (double) item.getAskValue())
                                                  .average().getAsDouble();
