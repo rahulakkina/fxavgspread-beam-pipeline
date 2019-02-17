@@ -25,13 +25,14 @@ public class ExtractFxDateTime extends DoFn<String, String> {
      * @throws Exception
      */
     @ProcessElement
-    public void extractTimeStamp(final ProcessContext c) throws Exception {
-        final String[] items = c.element().split(COMMA);
+    public void extractTimeStamp(final ProcessContext processContext) throws Exception {
+        final String[] items = processContext.element().split(COMMA);
         final String timestamp = parseTimestamp(items);
 
         if (timestamp != null) {
             try {
-                c.outputWithTimestamp(c.element(), new Instant(DATE_TIME_FORMATTER.parseMillis(timestamp)));
+                processContext.outputWithTimestamp(processContext.element(), 
+                                                   new Instant(DATE_TIME_FORMATTER.parseMillis(timestamp)));
             } catch (IllegalArgumentException e) {
                 // Skip the invalid input.
             }
