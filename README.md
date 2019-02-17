@@ -22,7 +22,7 @@ Clone the project in local and try building it using command `mvn clean install`
 
 Create a Cloud Storage Bucket, create two folders one for holding temporary objects and the other for holding staging objects (eg : gs://aliz/temp & gs://aliz/stage).
 
-Copy the downloaded service account key file (json) to $PROJECT_HOMR/cfg directory and create a SYSTEM variable with the name **GOOGLE_APPLICATION_CREDENTIALS** and point it to `%PROJECT_HOME%/cfg/<<service-account-key>>.json`.
+Copy the downloaded service account key file (json) to $PROJECT_HOMR/cfg directory and create a SYSTEM variable with the name **GOOGLE_APPLICATION_CREDENTIALS** and point it to `$PROJECT_HOME/cfg/<<service-account-key>>.json`.
 
 `export GOOGLE_APPLICATION_CREDENTIALS=$PROJECT_HOME/cfg/<<service-account-key>>.json`
 
