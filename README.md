@@ -54,7 +54,7 @@ Eg:
                               
                               --project=aliz \
                               
-                              --inputFile=<Dataset Path> \
+                              --inputFile=gs://aliz-fx/GBPUSD.csv \
                               
                               --bigQueryDataset=aliz-fx \
                               
