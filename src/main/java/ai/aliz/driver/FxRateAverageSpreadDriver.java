@@ -72,12 +72,8 @@ public class FxRateAverageSpreadDriver {
                         .to(tableRef)
                         .withSchema(getSchema()));
 
-        // Run the pipeline.
-        final PipelineResult result = pipeline.run();
-
-        // FxRateJobUtils will try to cancel the pipeline and the injector before the
-        // program exists.
-        fxRateJobUtils.waitToFinish(result);
+        // Run the pipeline.      
+        fxRateJobUtils.waitToFinish(pipeline.run());
     }
 
 
