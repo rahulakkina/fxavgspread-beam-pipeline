@@ -21,7 +21,7 @@ public class ExtractFxDateTime extends DoFn<String, String> {
     private static final long serialVersionUID = 1L;
 
     /**
-     * @param c
+     * @param processContext
      * @throws Exception
      */
     @ProcessElement
