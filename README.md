@@ -37,13 +37,13 @@ and then run the below command to run the job with default **10** minute sliding
                               
                               --inputFile=<input file path> \
                               
-                              --bigQueryDataset=<Bigquery Output Dataset Name> \
+                              --bigQueryDataset=<Bigquery Output Data-set Name> \
                               
                               --bigQueryTable=<Bigquery Output Table Name> \ 
                               
-                              --tempLocation=<Google storage temp location> \
+                              --tempLocation=<Google Cloud storage temp location> \
                               
-                              --stagingLocation=<Google storage staging location> 
+                              --stagingLocation=<Google Cloud storage staging location> 
     
 Eg:
 
@@ -105,9 +105,9 @@ and if the job is slow and if we would like to scale the number of workers use t
                               
                               --bigQueryTable=<Bigquery Output Table Name> \ 
                               
-                              --tempLocation=<Google storage temp location> \
+                              --tempLocation=<Google Cloud storage temp location> \
                               
-                              --stagingLocation=<Google storage staging location> \
+                              --stagingLocation=<Google Cloud storage staging location> \
                               
                               --windowDuration=<Window Duration in mins> \
                               
