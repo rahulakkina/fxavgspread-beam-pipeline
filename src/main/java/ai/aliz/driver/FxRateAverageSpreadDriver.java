@@ -58,7 +58,7 @@ public class FxRateAverageSpreadDriver {
         tableRef.setTableId(options.getBigQueryTable());
 
         pipeline
-                .apply("Reading Lines", new ReadFxFileAndExtractDateTime(options.getInputFile()))
+                .apply("Reading ...", new ReadFxFileAndExtractDateTime(options.getInputFile()))
                 .apply(ParDo.of(new ExtractFxRates()))
                 // map the incoming data stream into sliding windows.
                 .apply(
