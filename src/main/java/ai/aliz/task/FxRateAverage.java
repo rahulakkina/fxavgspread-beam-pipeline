@@ -63,10 +63,11 @@ public class FxRateAverage extends PTransform<PCollection<KV<String, FxRateInfo>
                                                 .mapToDouble(item -> (double) item.getBidValue())
                                                 .average().getAsDouble();
 
-                                final Float askAvgVal = (float) fxRateList.parallelStream()
-                                        .filter(item -> (item.getAskValue() != null))
-                                        .mapToDouble(item -> (double) item.getAskValue())
-                                        .average().getAsDouble();
+                                final Float askAvgVal = 
+                                         (float) fxRateList.parallelStream()
+                                                 .filter(item -> (item.getAskValue() != null))
+                                                 .mapToDouble(item -> (double) item.getAskValue())
+                                                 .average().getAsDouble();
 
                                 c.output(KV.of(venue,
                                         new FxRateInfo(venue, currency, bidAvgVal, askAvgVal)
