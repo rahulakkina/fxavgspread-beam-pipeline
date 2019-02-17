@@ -328,7 +328,7 @@ public class FxRateJobUtils {
     protected void printPendingMessages() {
         LOG.info("--------------------------------------------");
         for (String message : pendingMessages) {
-            System.out.println(message);
+            LOG.info(message);
         }
         LOG.info("--------------------------------------------");
     }
