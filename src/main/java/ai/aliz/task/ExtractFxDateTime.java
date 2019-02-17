@@ -34,7 +34,7 @@ public class ExtractFxDateTime extends DoFn<String, String> {
                 processContext.outputWithTimestamp(processContext.element(), 
                                                    new Instant(DATE_TIME_FORMATTER.parseMillis(timestamp)));
             } catch (IllegalArgumentException e) {
-                // Skip the invalid input.
+                // Skips an invalid input.
             }
         }
     }
