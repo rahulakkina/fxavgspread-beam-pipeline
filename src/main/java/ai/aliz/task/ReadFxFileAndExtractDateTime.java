@@ -14,12 +14,12 @@ import org.apache.beam.sdk.values.PCollection;
 /**
  * Reads the specified file and extract the timestamp
  */
-public class ReadFileAndExtractDateTime extends PTransform<PBegin, PCollection<String>> {
+public class ReadFxFileAndExtractDateTime extends PTransform<PBegin, PCollection<String>> {
     private static final long serialVersionUID = 1L;
 
     private final String inputFile;
 
-    public ReadFileAndExtractDateTime(final String inputFile) {
+    public ReadFxFileAndExtractDateTime(final String inputFile) {
         this.inputFile = inputFile;
     }
 

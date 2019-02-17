@@ -5,7 +5,7 @@ import ai.aliz.common.FxRateJobUtils;
 import ai.aliz.dto.FxRateAverageSpreadOptions;
 import ai.aliz.task.ExtractFxRates;
 import ai.aliz.task.FxRateAverage;
-import ai.aliz.task.ReadFileAndExtractDateTime;
+import ai.aliz.task.ReadFxFileAndExtractDateTime;
 import com.google.api.services.bigquery.model.TableReference;
 import org.apache.beam.sdk.Pipeline;
 import org.apache.beam.sdk.PipelineResult;
@@ -58,7 +58,7 @@ public class FxRateAverageSpreadDriver {
         tableRef.setTableId(options.getBigQueryTable());
 
         pipeline
-                .apply("Reading Lines", new ReadFileAndExtractDateTime(options.getInputFile()))
+                .apply("Reading Lines", new ReadFxFileAndExtractDateTime(options.getInputFile()))
                 .apply(ParDo.of(new ExtractFxRates()))
                 // map the incoming data stream into sliding windows.
                 .apply(
