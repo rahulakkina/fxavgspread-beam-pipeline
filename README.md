@@ -18,9 +18,9 @@ Enable the Google Cloud Storage, Compute Engine, Cloud Data-flow, Stack driver L
 
 #### Setup
 
-Clone the project in local and try building it using command `mvn clean install`.
+Clone the project in local and try building it using command `mvn clean install` it creates a jar `target/fxavgspread-beam-pipeline-job-0.1.jar` which can be used to run the beam pipeline job.
 
-Create a Cloud Storage Bucket, create two folders one for holding temporary objects and the other for holding staging objects (eg : gs://aliz/temp & gs://aliz/stage).
+Create a Google Cloud Storage Bucket, create two folders one for holding temporary objects and the other for holding staging objects (eg : gs://aliz-fx/temp & gs://aliz-fx/stage).
 
 Copy the downloaded service account key file (json) to $PROJECT_HOMR/cfg directory and create a SYSTEM variable with the name **GOOGLE_APPLICATION_CREDENTIALS** and point it to `$PROJECT_HOME/cfg/<<service-account-key>>.json`.
 
@@ -46,9 +46,6 @@ and then run the below command to run the job with default **10** minute sliding
                               --stagingLocation=<Google Cloud storage staging location> 
     
 Eg:
-
-
-
 
      java -jar $PROJECT_HOME/target/fxavgspread-beam-pipeline-job-0.1.jar --runner=DataflowRunner \
                               
