@@ -16,13 +16,16 @@ public class FxRateInfo implements Serializable {
     private static final long serialVersionUID = -7883452527722894189L;
 
     @Nullable
-    final String venue;
+    protected final String venue;
+    
     @Nullable
-    final String currency;
+    protected final String currency;
+    
     @Nullable
-    final Float bidValue;
+    protected final Float bidValue;
+    
     @Nullable
-    final Float askValue;
+    protected final Float askValue;
 
     public FxRateInfo(final String venue, final String currency, final Float bidValue, final Float askValue) {
         this.venue = venue;
